@@ -13,6 +13,7 @@ if (OMPL_BUILD_DEMOS)
             ${Boost_FILESYSTEM_LIBRARY}
             ${Boost_SYSTEM_LIBRARY}
             ${Boost_PROGRAM_OPTIONS_LIBRARY})
+        set_target_properties(${demo_name} PROPERTIES FOLDER "ompl_demos")
     endmacro(add_ompl_demo)
 
     add_ompl_demo(demo_RigidBodyPlanning RigidBodyPlanning.cpp)

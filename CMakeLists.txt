@@ -37,7 +37,8 @@ include_directories("${OMPL_INCLUDE_DIRS}")
 
 if(MSVC)
     add_definitions(-DBOOST_ALL_NO_LIB)
-    add_definitions(-DBOOST_PROGRAM_OPTIONS_DYN_LINK)
+    # add_definitions(-DBOOST_PROGRAM_OPTIONS_DYN_LINK)
+    add_definitions(-DBOOST_THREAD_PROVIDES_NESTED_LOCKS)
 endif(MSVC)
 # Ensure dynamic linking with boost unit_test_framework
 add_definitions(-DBOOST_TEST_DYN_LINK)
@@ -226,8 +227,11 @@ configure_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/cmake_uninstall.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
   IMMEDIATE @ONLY)
+
+if (NOT TARGET uninstall)
 add_custom_target(uninstall
   COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+endif()
 
 include(CPackSettings)
 
